@@ -3,33 +3,38 @@ import * as React from "react";
 import { useState } from "react";
 import { ChevronRight, ChevronDown, File } from "lucide-react";
 
-// Add type for mockData
-type MockData = {
-  about: {
-    title: string;
-    content: string;
-  };
-  experience: {
-    title: string;
-    items: Array<{
-      company: string;
-      role: string;
-      period: string;
-      description: string;
-    }>;
-  };
-  projects: {
-    title: string;
-    items: Array<{
-      name: string;
-      type: string;
-      description: string;
-      link: string;
-    }>;
-  };
-};
+interface AboutSection {
+  title: string;
+  content: string;
+}
 
-const mockData: MockData = {
+interface ExperienceItem {
+  company: string;
+  role: string;
+  period: string;
+  description: string;
+}
+
+interface ProjectItem {
+  name: string;
+  type: string;
+  description: string;
+  link: string;
+}
+
+interface ExperienceSection {
+  title: string;
+  items: ExperienceItem[];
+}
+
+interface ProjectsSection {
+  title: string;
+  items: ProjectItem[];
+}
+
+type SectionData = AboutSection | ExperienceSection | ProjectsSection;
+
+const sections: Record<Section, SectionData> = {
   about: {
     title: "About",
     content: "QA Engineer with full-stack development experience...",
@@ -70,6 +75,8 @@ const mockData: MockData = {
   },
 };
 
+type Section = "about" | "experience" | "projects";
+
 export default function FileExplorer() {
   const [openSections, setOpenSections] = useState({
     about: true,
@@ -77,7 +84,7 @@ export default function FileExplorer() {
     projects: false,
   });
 
-  const toggleSection = (section: string) => {
+  const toggleSection = (section: Section) => {
     setOpenSections((prev) => ({
       ...prev,
       [section]: !prev[section],
@@ -86,48 +93,64 @@ export default function FileExplorer() {
 
   return (
     <div className="font-mono">
-      {Object.entries(mockData).map(([key, section]) => (
+      {Object.entries(sections).map(([key, section]) => (
         <div key={key} className="mb-4">
           <button
-            onClick={() => toggleSection(key)}
+            onClick={() => toggleSection(key as Section)}
             className="flex items-center space-x-2 hover:bg-accent p-2 rounded-lg w-full text-left"
           >
-            {openSections[key] ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            {openSections[key as Section] ? (
+              <ChevronDown size={16} />
+            ) : (
+              <ChevronRight size={16} />
+            )}
             <span>{section.title}</span>
           </button>
-          
-          {openSections[key] && (
+
+          {openSections[key as Section] && (
             <div className="ml-6 mt-2 space-y-2">
               {key === "about" && (
-                <p className="p-2">{section.content}</p>
+                <p className="text-sm text-muted-foreground">
+                  {(section as AboutSection).content}
+                </p>
               )}
-              
-              {key === "experience" && section.items.map((item, i) => (
-                <div key={i} className="p-2 hover:bg-accent rounded-lg">
-                  <h3 className="font-bold">{item.company}</h3>
-                  <p>{item.role} | {item.period}</p>
-                  <p className="text-sm">{item.description}</p>
+
+              {key === "experience" && (
+                <div className="space-y-2">
+                  {(section as ExperienceSection).items.map((item, i) => (
+                    <div key={i} className="p-2 hover:bg-accent rounded-lg">
+                      <h3 className="font-bold">{item.company}</h3>
+                      <p>
+                        {item.role} | {item.period}
+                      </p>
+                      <p className="text-sm">{item.description}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-              
-              {key === "projects" && section.items.map((item, i) => (
-                <div key={i} className="p-2 hover:bg-accent rounded-lg">
-                  <div className="flex items-center space-x-2">
-                    <File size={16} />
-                    <a href={item.link} className="hover:underline">
-                      {item.name}
-                    </a>
-                  </div>
-                  <span className="text-sm text-muted-foreground ml-6">
-                    Type: {item.type}
-                  </span>
-                  <p className="text-sm ml-6">{item.description}</p>
+              )}
+
+              {key === "projects" && (
+                <div className="space-y-2">
+                  {(section as ProjectsSection).items.map((item, i) => (
+                    <div key={i} className="p-2 hover:bg-accent rounded-lg">
+                      <div className="flex items-center space-x-2">
+                        <File size={16} />
+                        <a href={item.link} className="hover:underline">
+                          {item.name}
+                        </a>
+                      </div>
+                      <span className="text-sm text-muted-foreground ml-6">
+                        Type: {item.type}
+                      </span>
+                      <p className="text-sm ml-6">{item.description}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              )}
             </div>
           )}
         </div>
       ))}
     </div>
   );
-} 
+}

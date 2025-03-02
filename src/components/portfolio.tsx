@@ -26,38 +26,45 @@ export function Portfolio() {
     {
       id: 1,
       title: "Output Arcade",
-      description: "Sample Playground",
-      longDescription: "A sample plugin from Output Inc. that allows you to create and perform instruments.",
-      technologies: ["Playwright", "TypeScript", "Manual Testing", "Rest API Testing"],
+      description: "Sr. QA Analyst",
+      longDescription: "As a QA Analyst, I lead comprehensive testing efforts, both manual and automated. I established a dedicated beta testing space to gather user feedback and enhance product quality. Additionally, I contributed to improving weekly content release features through custom scripts.",
+      technologies: ["Playwright", "TypeScript", "Manual Testing", "Rest API Testing", "Python"],
       link: "https://output.com/products/arcade",
-      images: ["/project1-1.png", "/project1-2.png"]
+      images: ["https://a.storyblok.com/f/296868/2160x1320/b7ca7105e2/arcade-pdp-hero-10-18.png", "https://a.storyblok.com/f/296868/1792x1092/8ec5831d62/arcade-features-image-v2.png"]
     },
     {
       id: 2,
       title: "Output FX",
-      description: "FX plugin",
-      link: "https://output.com/products"
+      description: "QA Analyst",
+      technologies: ["Manual Testing"],
+      link: "https://output.com/products",
+      images: ["https://shop.output.com/app/uploads/2020/07/Portal.png?auto=format,compress&w=768", "https://shop.output.com/app/uploads/2020/07/Thermal-new.png?auto=format,compress&w=768"]
     },
     {
       id: 3,
       title: "Flicked",
-      description: "Movie recommendations app",
+      description: "Full-stack Developer",
+      longDescription: "I built Flicked, a movie recommendations app, using Swift and UIKit. The app allows users to discover and save movies, and provides personalized recommendations based on their viewing history. I also implemented a secure login system using Firebase for authentication.",
       technologies: ["Swift", "UIKit", "Firebase"],
       link: "https://output.com/thermal"
     },
     {
       id: 4,
       title: "Pack Generator",
-      description: "AI sample pack generator",
-      link: "https://output.com/products/pack-generator"
+      description: "QA Engineer",
+      longDescription: "As a QA Engineer, I was responsible for developing and executing comprehensive test plans and scripts. I collaborated with cross-functional teams to identify and resolve issues, and implemented automation tools to streamline testing processes.",
+      technologies: ["Playwright", "TypeScript", "Manual Testing", "Rest API Testing", "Python"],
+      link: "https://output.com/products/pack-generator",
+      images: ["https://a.storyblok.com/f/296868/2160x1320/240ba23aa3/pack-generator-hero-v3.png", "https://a.storyblok.com/f/296868/1056x840/f927ad4b46/pack-generator-display-2.png"]
     },
     {
       id: 5,
       title: "Cool README",
-      description: "Readme generator",
-      longDescription: "A simple readme generator built with Next.js and Shadcn/UI.",
+      description: "Full-stack Developer",
+      longDescription: "A simple README generator built with Next.js and Shadcn/UI. Still in development.",
       technologies: ["Next.js", "TailwindCSS", "Shadcn/UI"],
-      link: "https://coolreadme.vercel.app"
+      link: "https://coolreadme.vercel.app",
+      images: ["https://coolreadme.vercel.app/_next/image?url=%2Fui1.gif&w=3840&q=75"]
     }
   ];
 
@@ -70,10 +77,10 @@ export function Portfolio() {
   }, [isDark])
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-background font-mono dark:bg-slate-950">
+    <div className="relative flex min-h-screen flex-col bg-background font-mono dark:bg-[hsl(215,25%,12%)]">
       <ParticlesBackground />
 
-      <header className="relative z-10 sticky top-0 w-full border-b bg-background/80 backdrop-blur-sm dark:border-slate-800">
+      <header className="relative z-10 sticky top-0 w-full border-b bg-background/80 backdrop-blur-sm dark:border-slate-800 dark:bg-[hsl(215,25%,12%)]/80">
         <nav className="container mx-auto flex h-14 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Terminal className="h-5 w-5" />
           <div className="hidden sm:flex items-center space-x-6 text-sm">
@@ -117,8 +124,7 @@ export function Portfolio() {
               <span className="text-primary">&gt;</span> about.txt
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              I build exceptional digital experiences with a focus on performance and user experience. Currently working on
-              open-source projects and exploring new technologies.
+            As a Quality Assurance Engineer, I ensure the highest standards of software quality through meticulous testing. I am passionate about full-stack development, delivering seamless user experiences, and continuously exploring innovative technologies to enhance my skill set.
             </p>
           </div>
 
@@ -177,7 +183,7 @@ export function Portfolio() {
               </li>
               <li>
                 <div className="flex justify-between items-start">
-                  <h3 className="font-medium">Full Stack Developer</h3>
+                  <h3 className="font-medium">Indie Developer</h3>
                   <span className="text-xs text-muted-foreground">2021-Present</span>
                 </div>
               </li>
@@ -192,7 +198,7 @@ export function Portfolio() {
         </div>
       </main>
 
-      <footer className="relative z-10 mt-auto border-t py-4 dark:border-slate-800 bg-background/80 backdrop-blur-sm">
+      <footer className="relative z-10 mt-auto border-t py-4 dark:border-slate-800 dark:bg-[hsl(215,25%,12%)]/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center">
             <p className="text-sm text-muted-foreground text-center">
