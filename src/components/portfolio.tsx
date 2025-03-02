@@ -2,7 +2,8 @@
 
 import { Moon, Sun, Terminal } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ProjectModal } from "@/components/project-modal";
@@ -19,7 +20,7 @@ interface Project {
 }
 
 const Portfolio = () => {
-  const [isDark, setIsDark] = useState(false);
+  const { theme, setTheme } = useTheme();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const projects: Project[] = [
@@ -77,14 +78,6 @@ const Portfolio = () => {
     },
   ];
 
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
-
   return (
     <div className="relative flex min-h-screen flex-col bg-background font-mono dark:bg-[hsl(215,25%,12%)]">
       <ParticlesBackground />
@@ -114,10 +107,10 @@ const Portfolio = () => {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setIsDark(!isDark)}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="h-9 w-9"
           >
-            {isDark ? (
+            {theme === "dark" ? (
               <Sun className="h-4 w-4" />
             ) : (
               <Moon className="h-4 w-4" />
