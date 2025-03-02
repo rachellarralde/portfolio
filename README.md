@@ -94,10 +94,7 @@ Any contributions you make are **greatly appreciated**!
 
 Feel free to reach out to me via:
 
-- **Email**: [your.email@example.com](mailto:your.email@example.com)
 - **LinkedIn**: [linkedin.com/in/rachellarralde](https://www.linkedin.com/in/rachellarralde)
 - **GitHub**: [github.com/rachellarralde](https://github.com/rachellarralde)
 
 ---
-
-Thank you for visiting my portfolio! I hope you enjoy exploring my work as much as I enjoyed creating it. 🌈✨
