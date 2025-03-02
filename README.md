@@ -12,8 +12,8 @@ Welcome! This project showcases my journey as a **Quality Assurance Engineer** a
   - [🚀 Features](#-features)
   - [🛠️ Technologies Used](#️-technologies-used)
   - [🏁 Getting Started](#-getting-started)
-  - [🤝 Contributing](#-contributing)
-  - [📫 Contact](#-contact)
+  - [Learn More](#learn-more)
+  - [Deploy on Vercel](#deploy-on-vercel)
 
 ---
 
@@ -74,29 +74,23 @@ To get a local copy up and running, follow these steps:
    yarn dev
    ```
 
-5. **Open your browser** and visit [http://localhost:3000](http://localhost:3000) to see your portfolio in action!
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 🤝 Contributing
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Any contributions you make are **greatly appreciated**!
+## Learn More
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+To learn more about Next.js, take a look at the following resources:
 
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📫 Contact
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Feel free to reach out to me via:
+## Deploy on Vercel
 
-- **LinkedIn**: [linkedin.com/in/rachellarralde](https://www.linkedin.com/in/rachellarralde)
-- **GitHub**: [github.com/rachellarralde](https://github.com/rachellarralde)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-Thank you for visiting my portfolio! I hope you enjoy exploring my work as much as I enjoyed creating it. 🌈✨
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

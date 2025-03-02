@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import { Moon, Sun, Terminal } from "lucide-react"
-import Link from "next/link"
-import { useEffect, useState } from "react"
+import { Moon, Sun, Terminal } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { ProjectModal } from "@/components/project-modal"
-import { ParticlesBackground } from "@/components/particles-background"
+import { Button } from "@/components/ui/button";
+import { ProjectModal } from "@/components/project-modal";
+import { ParticlesBackground } from "@/components/particles-background";
 
 interface Project {
   id: number;
@@ -18,63 +18,72 @@ interface Project {
   images?: string[];
 }
 
-export function Portfolio() {
-  const [isDark, setIsDark] = useState(false)
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+const Portfolio = () => {
+  const [isDark, setIsDark] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const projects: Project[] = [
     {
       id: 1,
       title: "Output Arcade",
-      description: "Sr. QA Analyst",
-      longDescription: "As a QA Analyst, I lead comprehensive testing efforts, both manual and automated. I established a dedicated beta testing space to gather user feedback and enhance product quality. Additionally, I contributed to improving weekly content release features through custom scripts.",
-      technologies: ["Playwright", "TypeScript", "Manual Testing", "Rest API Testing", "Python"],
+      description: "Sample Playground",
+      longDescription:
+        "A sample plugin from Output Inc. that allows you to create and perform instruments.",
+      technologies: [
+        "Playwright",
+        "TypeScript",
+        "Manual Testing",
+        "Rest API Testing",
+      ],
       link: "https://output.com/products/arcade",
-      images: ["https://a.storyblok.com/f/296868/2160x1320/b7ca7105e2/arcade-pdp-hero-10-18.png", "https://a.storyblok.com/f/296868/1792x1092/8ec5831d62/arcade-features-image-v2.png"]
+      images: [
+        "https://a.storyblok.com/f/296868/2160x1320/b7ca7105e2/arcade-pdp-hero-10-18.png",
+        "https://a.storyblok.com/f/296868/1792x1092/8ec5831d62/arcade-features-image-v2.png",
+      ],
     },
     {
       id: 2,
       title: "Output FX",
-      description: "QA Analyst",
-      technologies: ["Manual Testing"],
+      description: "FX plugin",
       link: "https://output.com/products",
-      images: ["https://shop.output.com/app/uploads/2020/07/Portal.png?auto=format,compress&w=768", "https://shop.output.com/app/uploads/2020/07/Thermal-new.png?auto=format,compress&w=768"]
+      images: [
+        "https://shop.output.com/app/uploads/2020/07/Portal.png?auto=format,compress&w=768",
+        "https://shop.output.com/app/uploads/2020/07/Thermal-new.png?auto=format,compress&w=768",
+      ],
     },
     {
       id: 3,
       title: "Flicked",
       description: "Full-stack Developer",
-      longDescription: "I built Flicked, a movie recommendations app, using Swift and UIKit. The app allows users to discover and save movies, and provides personalized recommendations based on their viewing history. I also implemented a secure login system using Firebase for authentication.",
+      longDescription:
+        "I built Flicked, a movie recommendations app, using Swift and UIKit. The app allows users to discover and save movies, and provides personalized recommendations based on their viewing history. I also implemented a secure login system using Firebase for authentication.",
       technologies: ["Swift", "UIKit", "Firebase"],
-      link: "https://output.com/thermal"
+      link: "https://output.com/thermal",
     },
     {
       id: 4,
       title: "Pack Generator",
-      description: "QA Engineer",
-      longDescription: "As a QA Engineer, I was responsible for developing and executing comprehensive test plans and scripts. I collaborated with cross-functional teams to identify and resolve issues, and implemented automation tools to streamline testing processes.",
-      technologies: ["Playwright", "TypeScript", "Manual Testing", "Rest API Testing", "Python"],
+      description: "AI sample pack generator",
       link: "https://output.com/products/pack-generator",
-      images: ["https://a.storyblok.com/f/296868/2160x1320/240ba23aa3/pack-generator-hero-v3.png", "https://a.storyblok.com/f/296868/1056x840/f927ad4b46/pack-generator-display-2.png"]
     },
     {
       id: 5,
       title: "Cool README",
-      description: "Full-stack Developer",
-      longDescription: "A simple README generator built with Next.js and Shadcn/UI. Still in development.",
+      description: "Readme generator",
+      longDescription:
+        "A simple readme generator built with Next.js and Shadcn/UI.",
       technologies: ["Next.js", "TailwindCSS", "Shadcn/UI"],
       link: "https://coolreadme.vercel.app",
-      images: ["https://coolreadme.vercel.app/_next/image?url=%2Fui1.gif&w=3840&q=75"]
-    }
+    },
   ];
 
   useEffect(() => {
     if (isDark) {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove("dark");
     }
-  }, [isDark])
+  }, [isDark]);
 
   return (
     <div className="relative flex min-h-screen flex-col bg-background font-mono dark:bg-[hsl(215,25%,12%)]">
@@ -84,10 +93,12 @@ export function Portfolio() {
         <nav className="container mx-auto flex h-14 items-center justify-between px-4 sm:px-6 lg:px-8">
           <Terminal className="h-5 w-5" />
           <div className="hidden sm:flex items-center space-x-6 text-sm">
-            <Link className="hover:text-primary transition-colors" href="https://github.com/rachellarralde">
+            <Link
+              className="hover:text-primary transition-colors"
+              href="https://github.com/rachellarralde"
+            >
               Github
             </Link>
-            
           </div>
           <div className="flex sm:hidden items-center space-x-4 text-xs">
             <Link className="hover:text-primary" href="#about">
@@ -106,7 +117,11 @@ export function Portfolio() {
             onClick={() => setIsDark(!isDark)}
             className="h-9 w-9"
           >
-            {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {isDark ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
             <span className="sr-only">Toggle dark mode</span>
           </Button>
         </nav>
@@ -114,7 +129,9 @@ export function Portfolio() {
 
       <main className="relative z-10 flex-grow container mx-auto px-4 py-8 sm:px-6 lg:px-8 max-w-7xl">
         <section className="mb-8 text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold mb-4">Rachel Larralde</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-4">
+            Rachel Larralde
+          </h1>
           <p className="text-muted-foreground">Quality Assurance Engineer</p>
         </section>
 
@@ -124,7 +141,9 @@ export function Portfolio() {
               <span className="text-primary">&gt;</span> about.txt
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-            As a Quality Assurance Engineer, I ensure the highest standards of software quality through meticulous testing. I am passionate about full-stack development, delivering seamless user experiences, and continuously exploring innovative technologies to enhance my skill set.
+              I build exceptional digital experiences with a focus on
+              performance and user experience. Currently working on open-source
+              projects and exploring new technologies.
             </p>
           </div>
 
@@ -151,7 +170,7 @@ export function Portfolio() {
                     className="w-full text-left flex items-center gap-4 p-3 rounded-lg transition-all hover:bg-gray-100 dark:hover:bg-slate-800 group"
                   >
                     <span className="text-primary group-hover:translate-x-0.5 transition-transform">
-                      {String(project.id).padStart(2, '0')}
+                      {String(project.id).padStart(2, "0")}
                     </span>
                     <div className="flex-1">
                       <h3 className="font-medium group-hover:text-primary transition-colors">
@@ -178,19 +197,25 @@ export function Portfolio() {
               <li>
                 <div className="flex justify-between items-start">
                   <h3 className="font-medium">QA Engineer</h3>
-                  <span className="text-xs text-muted-foreground">2024-Present</span>
+                  <span className="text-xs text-muted-foreground">
+                    2024-Present
+                  </span>
                 </div>
               </li>
               <li>
                 <div className="flex justify-between items-start">
-                  <h3 className="font-medium">Indie Developer</h3>
-                  <span className="text-xs text-muted-foreground">2021-Present</span>
+                  <h3 className="font-medium">Full Stack Developer</h3>
+                  <span className="text-xs text-muted-foreground">
+                    2021-Present
+                  </span>
                 </div>
               </li>
               <li>
                 <div className="flex justify-between items-start">
                   <h3 className="font-medium">QA Analyst</h3>
-                  <span className="text-xs text-muted-foreground">2018-2023</span>
+                  <span className="text-xs text-muted-foreground">
+                    2018-2023
+                  </span>
                 </div>
               </li>
             </ul>
@@ -209,11 +234,13 @@ export function Portfolio() {
       </footer>
 
       {selectedProject && (
-        <ProjectModal 
-          project={selectedProject} 
-          onClose={() => setSelectedProject(null)} 
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
         />
       )}
     </div>
-  )
-}
+  );
+};
+
+export default Portfolio;

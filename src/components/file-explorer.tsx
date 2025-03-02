@@ -32,7 +32,20 @@ interface ProjectsSection {
   items: ProjectItem[];
 }
 
+type Section = "about" | "experience" | "projects";
 type SectionData = AboutSection | ExperienceSection | ProjectsSection;
+type OpenSections = Record<Section, boolean>;
+
+const isAboutSection = (section: SectionData): section is AboutSection =>
+  "content" in section;
+
+const isExperienceSection = (
+  section: SectionData
+): section is ExperienceSection =>
+  "items" in section && section.items[0] && "company" in section.items[0];
+
+const isProjectSection = (section: SectionData): section is ProjectsSection =>
+  "items" in section && section.items[0] && "name" in section.items[0];
 
 const sections: Record<Section, SectionData> = {
   about: {
@@ -75,17 +88,15 @@ const sections: Record<Section, SectionData> = {
   },
 };
 
-type Section = "about" | "experience" | "projects";
-
 export default function FileExplorer() {
-  const [openSections, setOpenSections] = useState({
-    about: true,
+  const [openSections, setOpenSections] = useState<OpenSections>({
+    about: false,
     experience: false,
     projects: false,
   });
 
   const toggleSection = (section: Section) => {
-    setOpenSections((prev) => ({
+    setOpenSections((prev: OpenSections) => ({
       ...prev,
       [section]: !prev[section],
     }));
@@ -109,44 +120,36 @@ export default function FileExplorer() {
 
           {openSections[key as Section] && (
             <div className="ml-6 mt-2 space-y-2">
-              {key === "about" && (
-                <p className="text-sm text-muted-foreground">
-                  {(section as AboutSection).content}
-                </p>
+              {isAboutSection(section) && (
+                <p className="p-2">{section.content}</p>
               )}
 
-              {key === "experience" && (
-                <div className="space-y-2">
-                  {(section as ExperienceSection).items.map((item, i) => (
-                    <div key={i} className="p-2 hover:bg-accent rounded-lg">
-                      <h3 className="font-bold">{item.company}</h3>
-                      <p>
-                        {item.role} | {item.period}
-                      </p>
-                      <p className="text-sm">{item.description}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {isExperienceSection(section) &&
+                section.items.map((item: ExperienceItem, i: number) => (
+                  <div key={i} className="p-2 hover:bg-accent rounded-lg">
+                    <h3 className="font-bold">{item.company}</h3>
+                    <p>
+                      {item.role} | {item.period}
+                    </p>
+                    <p className="text-sm">{item.description}</p>
+                  </div>
+                ))}
 
-              {key === "projects" && (
-                <div className="space-y-2">
-                  {(section as ProjectsSection).items.map((item, i) => (
-                    <div key={i} className="p-2 hover:bg-accent rounded-lg">
-                      <div className="flex items-center space-x-2">
-                        <File size={16} />
-                        <a href={item.link} className="hover:underline">
-                          {item.name}
-                        </a>
-                      </div>
-                      <span className="text-sm text-muted-foreground ml-6">
-                        Type: {item.type}
-                      </span>
-                      <p className="text-sm ml-6">{item.description}</p>
+              {isProjectSection(section) &&
+                section.items.map((item: ProjectItem, i: number) => (
+                  <div key={i} className="p-2 hover:bg-accent rounded-lg">
+                    <div className="flex items-center space-x-2">
+                      <File size={16} />
+                      <a href={item.link} className="hover:underline">
+                        {item.name}
+                      </a>
                     </div>
-                  ))}
-                </div>
-              )}
+                    <span className="text-sm text-muted-foreground ml-6">
+                      Type: {item.type}
+                    </span>
+                    <p className="text-sm ml-6">{item.description}</p>
+                  </div>
+                ))}
             </div>
           )}
         </div>
