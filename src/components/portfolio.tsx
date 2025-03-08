@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ProjectModal } from "@/components/project-modal";
-import { ParticlesBackground } from "@/components/particles-background";
+import ParticlesBackground from "@/components/particles-background";
 
 interface Project {
   id: number;
