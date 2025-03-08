@@ -1,0 +1,25 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(
+      circle,
+      rgba(179, 179, 180, 0.4) 2px,
+      transparent 2px
+    ),
+    radial-gradient(circle, rgba(121, 118, 119, 0.4) 2px, transparent 2px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .background {
+    background-image: radial-gradient(
+        circle,
+        rgba(109, 108, 111, 0.6) 2px,
+        transparent 2px
+      ),
+      radial-gradient(circle, rgba(133, 131, 132, 0.6) 2px, transparent 2px);
+  }
+}

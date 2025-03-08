@@ -15,17 +15,17 @@ interface ProjectModalProps {
     longDescription?: string;
     images?: string[];
   };
-  onClose: () => void;
+  onCloseAction: () => void;
 }
 
-export function ProjectModal({ project, onClose }: ProjectModalProps) {
+export function ProjectModal({ project, onCloseAction }: ProjectModalProps) {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") onCloseAction();
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, [onClose]);
+  }, [onCloseAction]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -38,7 +38,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-20">
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
+        onClick={onCloseAction}
       />
 
       <div className="relative bg-background border rounded-lg shadow-lg w-full max-w-6xl max-h-[85vh] overflow-y-auto">
@@ -46,7 +46,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="sticky top-0 z-20 bg-background border-b px-8 py-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold">{project.title}</h2>
           <button
-            onClick={onClose}
+            onClick={onCloseAction}
             className="p-2 hover:bg-gray-100 rounded-full dark:hover:bg-slate-800 transition-colors"
             aria-label="Close modal"
           >
@@ -60,14 +60,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {project.images && project.images.length > 0 && (
             <div className="grid grid-cols-1 gap-4 mt-4">
               {project.images.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image}
-                  alt={`${project.title} screenshot ${index + 1}`}
-                  width={800}
-                  height={600}
-                  className="rounded-lg"
-                />
+                <div key={index} className="relative w-full h-[400px]">
+                  <Image
+                    src={image}
+                    alt={`${project.title} screenshot ${index + 1}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'contain' }}
+                    className="rounded-lg"
+                  />
+                </div>
               ))}
             </div>
           )}
@@ -101,14 +103,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* Footer */}
         <div className="sticky bottom-0 z-20 bg-background border-t px-8 py-6">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-primary hover:underline text-lg font-medium"
-          >
-            View Project <span className="text-xl">→</span>
-          </a>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-primary hover:underline text-lg font-medium"
+            >
+              View Project <span className="text-xl">→</span>
+            </a>
+          )}
         </div>
       </div>
     </div>
